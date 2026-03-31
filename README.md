@@ -98,7 +98,7 @@ npm run dev
 
 Acesse `http://localhost:5173` no navegador.
 
-> [ACESSAR APP WEB](https://whatsappnoadd.vercel.app/)
+> [ACESSAR APP WEB](https://web-cascader-converter.vercel.app/)
 
 <!-- ## Como rodar os testes
 
