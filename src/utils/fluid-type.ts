@@ -1,4 +1,4 @@
-import type { ClampResult } from '../types';
+import type { ClampResult, LineHeightFactor, LineHeightMode } from '../types';
 
 function roundTo(value: number, decimals: number): number {
 	const factor = Math.pow(10, decimals);
@@ -7,6 +7,19 @@ function roundTo(value: number, decimals: number): number {
 
 function formatNum(value: number): string {
 	return roundTo(value, 2).toFixed(2);
+}
+
+export function calculateLineHeightPx(
+	fontSize: number,
+	factor: LineHeightFactor,
+	mode: LineHeightMode = 'offset'
+): number {
+	if (mode === 'factor') {
+		return Math.round(fontSize * factor);
+	}
+
+	const offset = factor === 1.5 ? 8 : 4;
+	return Math.round(fontSize + offset);
 }
 
 export function calculateClamp(

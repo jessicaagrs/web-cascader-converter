@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
 import type { FluidTypeConfig } from '../../types';
 import { DEFAULT_FLUID_CONFIG } from '../../types';
-import { calculateClamp } from '../../utils/fluid-type';
+import { calculateClamp, calculateLineHeightPx } from '../../utils/fluid-type';
 import { ClampOutput } from './ClampOutput';
 import { FluidInputs } from './FluidInputs';
 import { FluidPreview } from './FluidPreview';
@@ -9,6 +9,17 @@ import { FluidPreview } from './FluidPreview';
 export function FluidTypePanel() {
 	const [config, setConfig] = useState<FluidTypeConfig>(DEFAULT_FLUID_CONFIG);
 	const [simulatedWidth, setSimulatedWidth] = useState(800);
+
+	const minLineHeight = calculateLineHeightPx(
+		config.minFontSize,
+		config.lineHeightFactor,
+		config.lineHeightMode
+	);
+	const maxLineHeight = calculateLineHeightPx(
+		config.maxFontSize,
+		config.lineHeightFactor,
+		config.lineHeightMode
+	);
 
 	const fontClamp = useMemo(
 		() =>
@@ -29,17 +40,12 @@ export function FluidTypePanel() {
 	const lineHeightClamp = useMemo(
 		() =>
 			calculateClamp(
-				config.minLineHeight,
-				config.maxLineHeight,
+				minLineHeight,
+				maxLineHeight,
 				config.minViewport,
 				config.maxViewport
 			),
-		[
-			config.minLineHeight,
-			config.maxLineHeight,
-			config.minViewport,
-			config.maxViewport
-		]
+		[minLineHeight, maxLineHeight, config.minViewport, config.maxViewport]
 	);
 
 	return (
@@ -67,13 +73,15 @@ export function FluidTypePanel() {
 					<FluidInputs
 						config={config}
 						onChange={setConfig}
+						minLineHeight={minLineHeight}
+						maxLineHeight={maxLineHeight}
 					/>
 
 					<FluidPreview
 						minFontSize={config.minFontSize}
 						maxFontSize={config.maxFontSize}
-						minLineHeight={config.minLineHeight}
-						maxLineHeight={config.maxLineHeight}
+						minLineHeight={minLineHeight}
+						maxLineHeight={maxLineHeight}
 						minViewport={config.minViewport}
 						maxViewport={config.maxViewport}
 						simulatedWidth={simulatedWidth}

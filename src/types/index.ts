@@ -8,11 +8,14 @@ export interface ConversionConfig {
 	referenceValue: number;
 }
 
+export type LineHeightFactor = 1.5 | 1.3;
+export type LineHeightMode = 'offset' | 'factor';
+
 export interface FluidTypeConfig {
 	minFontSize: number;
 	maxFontSize: number;
-	minLineHeight: number;
-	maxLineHeight: number;
+	lineHeightFactor: LineHeightFactor;
+	lineHeightMode: LineHeightMode;
 	minViewport: number;
 	maxViewport: number;
 }
@@ -48,8 +51,8 @@ export const DEFAULT_CONFIG: ConversionConfig = {
 export const DEFAULT_FLUID_CONFIG: FluidTypeConfig = {
 	minFontSize: 16,
 	maxFontSize: 22,
-	minLineHeight: 24,
-	maxLineHeight: 32,
+	lineHeightFactor: 1.5,
+	lineHeightMode: 'offset',
 	minViewport: 400,
 	maxViewport: 1280
 };
