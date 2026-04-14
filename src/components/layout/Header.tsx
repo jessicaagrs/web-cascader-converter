@@ -67,7 +67,21 @@ export function Header({ activeTab, onTabChange }: HeaderProps) {
 								: 'text-zinc-600 hover:bg-zinc-100 dark:text-zinc-300 dark:hover:bg-zinc-800'
 						}`}>
 						Tipografia Fluida
-					</button>
+					</button>{' '}
+					<button
+						type='button'
+						role='tab'
+						id='tab-responsive-image'
+						aria-selected={activeTab === 'responsive-image'}
+						aria-controls='panel-responsive-image'
+						onClick={() => onTabChange('responsive-image')}
+						className={`rounded-lg px-4 py-2 text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 ${
+							activeTab === 'responsive-image'
+								? 'bg-blue-500 text-white'
+								: 'text-zinc-600 hover:bg-zinc-100 dark:text-zinc-300 dark:hover:bg-zinc-800'
+						}`}>
+						Imagem Responsiva
+					</button>{' '}
 					<div className='ml-2 hidden sm:block'>
 						<ThemeToggle />
 					</div>

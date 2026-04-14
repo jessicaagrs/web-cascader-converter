@@ -27,7 +27,39 @@ export interface ClampResult {
 	preferred: string;
 }
 
-export type TabId = 'converter' | 'fluid-type';
+export type TabId = 'converter' | 'fluid-type' | 'responsive-image';
+
+export type ImageFormat = 'avif' | 'webp';
+export type ImageFallbackFormat = 'jpg' | 'png' | 'webp';
+export type LoadingStrategy = 'lazy' | 'eager';
+
+export interface ResponsiveImageConfig {
+	imageName: string;
+	alt: string;
+	loading: LoadingStrategy;
+	useFetchPriority: boolean;
+	width: number;
+	height: number;
+	breakpoints: number[];
+	formats: ImageFormat[];
+	fallbackFormat: ImageFallbackFormat;
+	fallbackBreakpoint: number;
+	sizes: string;
+}
+
+export const DEFAULT_RESPONSIVE_IMAGE_CONFIG: ResponsiveImageConfig = {
+	imageName: 'hero',
+	alt: 'Hero banner',
+	loading: 'lazy',
+	useFetchPriority: false,
+	width: 1920,
+	height: 1080,
+	breakpoints: [480, 1280, 1920],
+	formats: ['avif', 'webp'],
+	fallbackFormat: 'jpg',
+	fallbackBreakpoint: 1280,
+	sizes: '(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 60vw'
+};
 
 export const UNIT_LABELS: Record<CSSUnit, string> = {
 	px: 'Pixels (px)',
