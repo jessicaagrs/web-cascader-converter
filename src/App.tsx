@@ -3,7 +3,6 @@ import { ConverterPanel } from './components/converter/ConverterPanel';
 import { FluidTypePanel } from './components/fluid-type/FluidTypePanel';
 import { Footer } from './components/layout/Footer';
 import { Header } from './components/layout/Header';
-import { ResponsiveImagePanel } from './components/responsive-image/ResponsiveImagePanel';
 import type { TabId } from './types';
 
 export default function App() {
@@ -25,7 +24,6 @@ export default function App() {
 				className='mx-auto w-full max-w-5xl flex-1 px-4 py-8'>
 				{activeTab === 'converter' && <ConverterPanel />}
 				{activeTab === 'fluid-type' && <FluidTypePanel />}
-				{activeTab === 'responsive-image' && <ResponsiveImagePanel />}
 			</main>
 			<Footer />
 		</div>
